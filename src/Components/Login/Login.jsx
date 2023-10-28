@@ -5,7 +5,14 @@ import { useState } from "react";
 const Login = () => {
 
     // eslint-disable-next-line no-unused-vars
-    const [errorText, setErrorText] = useState("")
+    const [errorText, setErrorText] = useState("");
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        const email = e.target.email.value;
+        const password = e.target.password.value;
+        console.log(email, password);
+    }
 
     return (
         <div>
@@ -27,7 +34,7 @@ const Login = () => {
                                 <h3 className="text-2x">{user?.email}</h3>
                             </div> : */}
                             <div>
-                                <form className="card-body">
+                                <form className="card-body" onSubmit={handleSubmit}>
                                     <div className="form-control">
                                         <label className="label">
                                             <span className="label-text">Email</span>
@@ -47,10 +54,10 @@ const Login = () => {
                                         <button className="btn btn-accent btn-outline">Login</button>
                                     </div>
                                 </form>
-                                <div>
+                                <div className="card-body">
                                     <p className="text-center text-white">Sign in using:</p>
                                     <div className="flex justify-center gap-5 mt-5">
-                                        <button className="btn btn-outline"><span className="text-2xl"><FcGoogle></FcGoogle></span> Log in using Google</button>
+                                        <button className="btn btn-outline btn-block btn-warning"><span className="text-2xl"><FcGoogle></FcGoogle></span> Log in using Google</button>
                                     </div>
                                 </div>
                                 <p className="text-white text-center py-5">Don&apos;t have an account? <Link to="/register"><span className="underline text-blue-500">Register Now</span></Link></p>

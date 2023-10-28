@@ -1,12 +1,62 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { FcGoogle } from "react-icons/fc";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import swal from 'sweetalert';
+import { AuthContext } from "../../providers/AuthProvider";
 
 const Register = () => {
 
-
-    // eslint-disable-next-line no-unused-vars
+    const { regEmailPass, googleSignin, user } = useContext(AuthContext)
+    const nav = useNavigate();
     const [errorText, setErrorText] = useState("")
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        const email = e.target.email.value;
+        const password = e.target.password.value;
+        // eslint-disable-next-line no-useless-escape
+        const regex = /^(?=.*[A-Z])(?=.*[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>/?]).{6,}$/;
+        if (!regex.test(password)) {
+            swal("Error!", "Password does not match minimum requirement", "error");
+            setErrorText("Password does not match minimum requirement")
+            return;
+        }
+        // console.log(email, password);
+        regEmailPass(email, password)
+            .then((uc) => {
+                console.log(uc);
+                // DONT FORGET TO CHANGE WINDOW ALERT!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+                swal("Complete!", "Account Created!", "success");
+                nav("/")
+            }).catch((err) => {
+                if (err.code === "auth/email-already-in-use") {
+                    swal("Error!", "Email is already in use. Please choose a different email.", "error");
+                    setErrorText("Email is already in use");
+                } else {
+                    swal("Error:", err);
+                    setErrorText("Error:", err);
+                }
+            })
+    }
+
+    const handleGoogle = () => {
+        googleSignin()
+            .then((uc) => {
+                console.log(uc);
+                swal("Complete!", "Account Created!", "success");
+                nav("/")
+            }).catch((err) => {
+                if (err.code === "auth/email-already-in-use") {
+                    swal("Error!", "Email is already in use. Please choose a different email.", "error");
+                    setErrorText("Email is already in use");
+                } else {
+                    swal("Error:", err);
+                    setErrorText("Error:", err);
+                    console.log(err);
+                }
+            })
+    }
+
 
     return (
         <div>
@@ -19,44 +69,48 @@ const Register = () => {
                         </div>
 
                         <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
-                            {/* {user ? <div className="text-center text-white text-2xl p-5">
+                            {user ? <div className="text-center text-2xl p-5">
 
                                 <p className="mb-5">Logged in with:</p>
                                 <div className="flex justify-center">
                                     <img className="w-[100px] rounded-full" src={user?.photoURL ? user.photoURL : "https://i.ibb.co/F8JsB1D/default-profile-account-unknown-icon-black-silhouette-free-vector.jpg"} alt="" />
                                 </div>
                                 <h3 className="text-2x">{user?.email}</h3>
-                            </div> : */}
-                            <div>
-                                <form className="card-body">
-                                    <div className="form-control">
-                                        <label className="label">
-                                            <span className="label-text">Email</span>
-                                        </label>
-                                        <input type="email" placeholder="email" name="email" className="input input-bordered " required />
-                                    </div>
-                                    <div className="form-control">
-                                        <label className="label">
-                                            <span className="label-text">Password</span>
-                                        </label>
-                                        <input type="password" placeholder="password" name="password" className="input input-bordered " required />
-                                    </div>
-                                    <div className="">
-                                        {errorText && <p className="text-red-500 py-2">{errorText}</p>}
-                                    </div>
-                                    <div className="form-control mt-6">
-                                        <button className="btn btn-accent btn-outline">Register</button>
-                                    </div>
-                                </form>
+                            </div> :
                                 <div>
-                                    <p className="text-center text-white">Sign up using:</p>
-                                    <div className="flex justify-center gap-5 mt-5">
-                                        <button className="btn btn-outline"><span className="text-2xl"><FcGoogle></FcGoogle></span> Signup using Google</button>
+                                    <form className="card-body" onSubmit={handleSubmit}>
+                                        <div className="form-control">
+                                            <label className="label">
+                                                <span className="label-text">Email</span>
+                                            </label>
+                                            <input type="email" placeholder="email" name="email" className="input input-bordered " required />
+                                        </div>
+                                        <div className="form-control">
+                                            <label className="label">
+                                                <span className="label-text">Password</span>
+                                            </label>
+                                            <input type="password" placeholder="password" name="password" className="input input-bordered " required />
+                                        </div>
+                                        <div className="">
+                                            <p>Password Requirements:</p>
+                                            <li>At least 6-charecter long</li>
+                                            <li>At least one special charecter</li>
+                                            <li>At least one Uppercase letter</li>
+                                            {errorText && <p className="text-red-500 py-2">{errorText}</p>}
+                                        </div>
+                                        <div className="form-control mt-6">
+                                            <button className="btn btn-accent btn-outline">Register</button>
+                                        </div>
+                                    </form>
+                                    <div className="card-body">
+                                        <p className="text-center">Sign up using:</p>
+                                        <div className="flex justify-center gap-5 mt-5">
+                                            <button onClick={handleGoogle} className="btn btn-outline btn-warning btn-block "><span className="text-2xl"><FcGoogle></FcGoogle></span> Sign up using Google</button>
+                                        </div>
                                     </div>
+                                    <p className=" text-center py-5">Already have an account? <Link to="/login"><span className="underline text-blue-500">Login Now</span></Link></p>
                                 </div>
-                                <p className="text-white text-center py-5">Already have an account? <Link to="/login"><span className="underline text-blue-500">Login Now</span></Link></p>
-                            </div>
-                            {/* } */}
+                            }
                         </div>
                     </div>
                 </div>
