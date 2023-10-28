@@ -6,7 +6,7 @@ const Banner = () => {
             <div className='h-[50vh]'>
                 <Carousel>
                     <div className="flex h-full items-center justify-center bg-gray-400 dark:bg-gray-700 dark:text-white">
-                        <div className="hero min-h-screen" style={{ backgroundImage: 'url(https://i.ibb.co/Zc3PTMr/52333071472-f2e907ae48-k.jpg)' }}>
+                        <div className="hero min-h-screen" style={{ backgroundImage: 'url(https://i.ibb.co/qCjpFYT/banner1.jpg)' }}>
                             <div className="absolute inset-0 bg-black opacity-70"></div>
                             <div className="hero-content text-center text-neutral-content">
                                 <div className="max-w-5xl">
@@ -16,7 +16,7 @@ const Banner = () => {
                         </div>
                     </div>
                     <div className="flex h-full items-center justify-center bg-gray-400 dark:bg-gray-700 dark:text-white">
-                        <div className="hero min-h-screen" style={{ backgroundImage: 'url(https://i.ibb.co/5cTJk8Q/expo.jpg)' }}>
+                        <div className="hero min-h-screen" style={{ backgroundImage: 'url(https://i.ibb.co/MZhKK7b/banner2.jpg)' }}>
                             <div className="absolute inset-0 bg-black opacity-70"></div>
                             <div className="hero-content text-center text-neutral-content">
                                 <div className="max-w-5xl">
