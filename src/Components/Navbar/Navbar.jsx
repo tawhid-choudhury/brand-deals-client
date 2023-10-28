@@ -1,8 +1,10 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
+import { AuthContext } from "../../providers/AuthProvider";
 
 const Navbar = () => {
     const [theme, setTheme] = useState(localStorage.getItem("theme") ? localStorage.getItem("theme") : "light");
+    const { user, logout } = useContext(AuthContext);
 
     useEffect(() => {
         localStorage.setItem("theme", theme);
@@ -16,6 +18,11 @@ const Navbar = () => {
         } else {
             setTheme("light");
         }
+    }
+
+    const handleLogout = () => {
+        logout()
+            .then(swal("Complete!", "logged out!", "success"))
     }
 
     return (
@@ -56,7 +63,15 @@ const Navbar = () => {
                     </label>
                 </div>
             </div>
-
+            <div className={`px-20 py-1 bg-base-300 ${!user && "hidden"}`}>
+                <div className="flex gap-5 items-center justify-end">
+                    <div className="w-7 rounded-full">
+                        <img src={user?.photoURL ? user.photoURL : "https://i.ibb.co/F8JsB1D/default-profile-account-unknown-icon-black-silhouette-free-vector.jpg"} className="rounded-full" />
+                    </div>
+                    <p className="text-xs hidden md:block">{user?.email}</p>
+                    <button onClick={handleLogout} className="btn btn-outline btn-sm">LogOut</button>
+                </div>
+            </div>
         </div>
     );
 };
