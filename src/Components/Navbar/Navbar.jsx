@@ -34,7 +34,7 @@ const Navbar = () => {
                             <li><NavLink to="/register" >Register</NavLink></li>
                         </ul>
                     </div>
-                    <a className="btn btn-ghost normal-case text-xl">daisyUI</a>
+                    <a className="btn btn-ghost normal-case text-xl border-3 rounded-full border-base-content">BEST BRANDS</a>
                 </div>
                 <div className="navbar-center hidden lg:flex">
                     <ul className="menu menu-horizontal px-1">
