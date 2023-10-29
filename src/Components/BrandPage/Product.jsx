@@ -16,12 +16,12 @@ const Product = ({ product }) => {
     }
     return (
         <div>
-            <div className="card card-compact max-w-sm h-[600px] bg-base-100 shadow-xl">
-                <figure className="h-full bg-white"><img src={product.img} alt="Shoes" /></figure>
+            <div className="card card-compact max-w-sm h-[700px] bg-base-100 shadow-xl">
+                <figure className="w-full h-full bg-white rounded-lg"><img className='rounded-t-xl w-full ' src={product.img} alt="Shoes" /></figure>
                 <div className="card-body">
                     <h2 className="card-title">{product.name}</h2>
                     <p className="flex text-xl items-center">Rating: &nbsp; {stars}</p>
-                    <p>Brand: {product.brand}</p>
+                    <p>Brand: <span className='capitalize'>{product.brand}</span> </p>
                     <p>Type: {product.type}</p>
                     <div className="flex items-center">
                         <p className="font-bold text-3xl my-5">{product.price}$</p>
