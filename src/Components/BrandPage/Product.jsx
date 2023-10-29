@@ -1,8 +1,10 @@
 import PropTypes from 'prop-types';
 
 import { AiFillStar, AiOutlineStar } from "react-icons/ai";
+import { useNavigate } from 'react-router-dom';
 
 const Product = ({ product }) => {
+    const nav = useNavigate();
     console.log(product);
     const full_stars = product.rating;
 
@@ -14,6 +16,11 @@ const Product = ({ product }) => {
             stars.push(<AiOutlineStar key={i} />);
         }
     }
+
+    const handleDetails = (id) => {
+        nav(`/productDetail/${id}`)
+    }
+
     return (
         <div>
             <div className="card card-compact max-w-sm h-[700px] bg-base-100 shadow-xl">
@@ -25,9 +32,9 @@ const Product = ({ product }) => {
                     <p>Type: {product.type}</p>
                     <div className="flex items-center">
                         <p className="font-bold text-3xl my-5">{product.price}$</p>
-                        <button className="btn btn-accent btn-outline">Details</button>
+                        <button className="btn btn-warning">Update</button>
                     </div>
-                    <button className="btn btn-warning btn-outline">Update</button>
+                    <button onClick={() => handleDetails(product._id)} className="btn btn-accent">Details</button>
                 </div>
             </div>
         </div>
