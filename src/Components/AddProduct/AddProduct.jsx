@@ -10,17 +10,40 @@ const AddProduct = () => {
         const form = e.target;
 
         const name = form.name.value;
+        if (!name) {
+            swal("Warning", "Enter name please", "warning")
+            return;
+        }
         const brand = form.brand.value;
         if (!brand) {
-            alert("select brand please")
+            swal("Warning", "select brand please", "warning")
             return;
         }
         const rating = parseInt(form.rating.value);
+        if (!rating) {
+            swal("Warning", "select rating please", "warning")
+            return;
+        }
         const type = form.type.value;
+        if (!type) {
+            swal("Warning", "Enter type please", "warning")
+            return;
+        }
         const price = form.price.value;
+        if (!price) {
+            swal("Warning", "Enter price please", "warning")
+            return;
+        }
         const shortDes = form.shortDes.value;
+        if (!shortDes) {
+            swal("Warning", "Enter shortDes please", "warning")
+            return;
+        }
         const img = form.img.value;
-
+        if (!img) {
+            swal("Warning", "Enter image URL please", "warning")
+            return;
+        }
         const newProduct = { name, brand, rating, type, price, shortDes, img }
 
         console.log(newProduct);

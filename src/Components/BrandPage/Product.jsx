@@ -32,7 +32,7 @@ const Product = ({ product }) => {
                     <p>Type: {product.type}</p>
                     <div className="flex items-center">
                         <p className="font-bold text-3xl my-5">{product.price}$</p>
-                        <button className="btn btn-warning">Update</button>
+                        <button onClick={() => nav(`/updateProduct/${product._id}`)} className="btn btn-warning">Update</button>
                     </div>
                     <button onClick={() => handleDetails(product._id)} className="btn btn-accent">Details</button>
                 </div>

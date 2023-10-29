@@ -21,7 +21,7 @@ const ProductDetail = () => {
 
     return (
         <div className="py-10 px-5 lg:px-10">
-            <div className="flex flex-col justify-between lg:flex-row gap-10">
+            <div className="flex flex-col justify-center lg:flex-row gap-20">
                 <div className="lg:max-w-[40%]">
                     <img src={product.img} alt="" className="w-full rounded-xl" />
                 </div>

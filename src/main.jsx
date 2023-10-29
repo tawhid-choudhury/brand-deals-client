@@ -14,6 +14,7 @@ import AuthProvider from "./providers/AuthProvider";
 import PrivateRoute from "./PrivateRoute/PrivateRoute";
 import BrandPage from "./Components/BrandPage/BrandPage";
 import ProductDetail from "./Components/ProductDetail/ProductDetail";
+import UpdateProduct from "./Components/UpdateProduct/UpdateProduct";
 
 const router = createBrowserRouter([
   {
@@ -41,8 +42,9 @@ const router = createBrowserRouter([
         element: <Register></Register>
       },
       {
-        path: '/update',
-        element: <h1>update</h1>
+        path: '/updateProduct/:id',
+        element: <PrivateRoute><UpdateProduct></UpdateProduct></PrivateRoute>,
+        loader: ({ params }) => fetch(`http://localhost:5000/productDetail/${params.id}`)
       },
       {
         path: '/products/:brand',
