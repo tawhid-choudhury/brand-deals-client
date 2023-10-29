@@ -1,6 +1,9 @@
+// import { useState } from "react";
 import swal from "sweetalert";
 
 const AddProduct = () => {
+
+    // const [errorText, setErrorText] = useState("")
 
     const handleAdd = (e) => {
         e.preventDefault();
@@ -31,6 +34,8 @@ const AddProduct = () => {
             .then(data => {
                 console.log(data);
                 swal("Complete!", `ADDED ${name}!`, "success")
+            }).catch((err) => {
+                swal("Error:", `${err}`, "error");
             })
 
     }
