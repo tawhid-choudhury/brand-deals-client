@@ -2,11 +2,11 @@ import { useContext } from "react";
 import { AiFillStar, AiOutlineStar } from "react-icons/ai";
 import { useLoaderData } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProvider";
+import swal from "sweetalert";
 
 const ProductDetail = () => {
     const { user } = useContext(AuthContext)
     const product = useLoaderData();
-    console.log(product);
 
     const full_stars = product.rating;
 
@@ -17,6 +17,29 @@ const ProductDetail = () => {
         } else {
             stars.push(<AiOutlineStar key={i} />);
         }
+    }
+
+    const handleAddtoCart = () => {
+        const email = user.email;
+        const productId = product._id;
+
+        const newCart = { email, productId }
+        console.log(newCart);
+
+        fetch('http://localhost:5000/carts', {
+            method: "POST",
+            headers: { "content-type": "application/json" },
+            body: JSON.stringify(newCart)
+        })
+
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+                swal("Complete!", `ADDED ${product.name} to Cart!`, "success")
+            }).catch((err) => {
+                swal("Error:", `${err}`, "error");
+            })
+
     }
 
     return (
@@ -33,7 +56,7 @@ const ProductDetail = () => {
                     <p className="p-4 font-semibold text-2xl border-2 rounded-lg my-3">Type: {product.type}</p>
                     <p className="p-4 font-semibold text-2xl border-2 rounded-lg my-3">Price: {product.price}$</p>
                     <p className="mt-10">Viewing as {user.displayName || user.email}</p>
-                    <button className="btn btn-warning mt-5 btn-block">Add to Cart</button>
+                    <button onClick={handleAddtoCart} className="btn btn-warning mt-5 btn-block">Add to Cart</button>
                 </div>
             </div>
         </div>

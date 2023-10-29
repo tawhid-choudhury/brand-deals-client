@@ -54,7 +54,7 @@ const UpdateProduct = () => {
             .then(res => res.json())
             .then(data => {
                 console.log(data);
-                swal("Complete!", `ADDED ${name}!`, "success")
+                swal("Complete!", `Updated ${name}!`, "success")
             }).catch((err) => {
                 swal("Error:", `${err}`, "error");
             })

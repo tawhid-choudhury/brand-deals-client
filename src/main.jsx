@@ -15,6 +15,7 @@ import PrivateRoute from "./PrivateRoute/PrivateRoute";
 import BrandPage from "./Components/BrandPage/BrandPage";
 import ProductDetail from "./Components/ProductDetail/ProductDetail";
 import UpdateProduct from "./Components/UpdateProduct/UpdateProduct";
+import Cart from "./Components/Cart/Cart";
 
 const router = createBrowserRouter([
   {
@@ -31,7 +32,7 @@ const router = createBrowserRouter([
       },
       {
         path: '/cart',
-        element: <PrivateRoute><h1>cart</h1></PrivateRoute>
+        element: <PrivateRoute><Cart></Cart></PrivateRoute>
       },
       {
         path: '/login',
