@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 import { AiFillStar, AiOutlineStar } from "react-icons/ai";
 
 const Product = ({ product }) => {
@@ -30,6 +32,11 @@ const Product = ({ product }) => {
             </div>
         </div>
     );
+};
+
+
+Product.propTypes = {
+    product: PropTypes.object,
 };
 
 export default Product;
