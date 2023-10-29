@@ -1,3 +1,5 @@
+import swal from "sweetalert";
+
 const AddProduct = () => {
 
     const handleAdd = (e) => {
@@ -19,6 +21,17 @@ const AddProduct = () => {
         const newProduct = { name, brand, rating, type, price, shortDes, img }
 
         console.log(newProduct);
+
+        fetch('http://localhost:5000/products', {
+            method: "POST",
+            headers: { "content-type": "application/json" },
+            body: JSON.stringify(newProduct)
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+                swal("Complete!", `ADDED ${name}!`, "success")
+            })
 
     }
 

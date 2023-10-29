@@ -6,7 +6,7 @@ import { AuthContext } from "../../providers/AuthProvider";
 
 const Register = () => {
 
-    const { regEmailPass, googleSignin, user } = useContext(AuthContext)
+    const { regEmailPass, googleSignin, user, updateName, setLoader } = useContext(AuthContext)
     const nav = useNavigate();
     const [errorText, setErrorText] = useState("")
 
@@ -14,6 +14,7 @@ const Register = () => {
         e.preventDefault();
         const email = e.target.email.value;
         const password = e.target.password.value;
+        const name = e.target.name.value;
         // eslint-disable-next-line no-useless-escape
         const regex = /^(?=.*[A-Z])(?=.*[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>/?]).{6,}$/;
         if (!regex.test(password)) {
@@ -25,7 +26,14 @@ const Register = () => {
         regEmailPass(email, password)
             .then((uc) => {
                 console.log(uc);
-                // DONT FORGET TO CHANGE WINDOW ALERT!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+                if (name) {
+                    updateName(uc.user, name).then(() => {
+                        console.log("display name set as :" + name);
+                        setLoader(false)
+                    }).catch(err => {
+                        console.log(err);
+                    });
+                }
                 swal("Complete!", "Account Created!", "success");
                 nav("/")
             }).catch((err) => {
@@ -97,6 +105,12 @@ const Register = () => {
                                             <li>At least one special charecter</li>
                                             <li>At least one Uppercase letter</li>
                                             {errorText && <p className="text-red-500 py-2">{errorText}</p>}
+                                        </div>
+                                        <div className="form-control">
+                                            <label className="label">
+                                                <span className="label-text">Display Name</span>
+                                            </label>
+                                            <input type="Text" placeholder="Display Name (OPTIONAL)" name="name" className="input input-bordered " />
                                         </div>
                                         <div className="form-control mt-6">
                                             <button className="btn btn-accent btn-outline">Register</button>

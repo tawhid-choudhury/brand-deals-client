@@ -1,10 +1,12 @@
 import { useContext, useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProvider";
+import swal from "sweetalert";
 
 const Navbar = () => {
     const [theme, setTheme] = useState(localStorage.getItem("theme") ? localStorage.getItem("theme") : "light");
-    const { user, logout } = useContext(AuthContext);
+    const { user, logout, loader } = useContext(AuthContext);
+
 
     useEffect(() => {
         localStorage.setItem("theme", theme);
@@ -41,7 +43,7 @@ const Navbar = () => {
                             <li><NavLink to="/register" >Register</NavLink></li>
                         </ul>
                     </div>
-                    <a className="btn btn-ghost normal-case text-xl border-3 rounded-full border-base-content">BEST BRANDS</a>
+                    <a className="normal-case lg:text-xl border-3 border-base-content bg-base-300 p-1 rounded-full"><span className="text-accent bg-warning rounded-full px-2">B</span> <span className="hidden md:inline ">&</span> <span className="text-warning bg-accent rounded-full px-2">B</span></a>
                 </div>
                 <div className="navbar-center hidden lg:flex">
                     <ul className="menu menu-horizontal px-1">
@@ -63,15 +65,18 @@ const Navbar = () => {
                     </label>
                 </div>
             </div>
-            <div className={`px-20 py-1 bg-base-300 ${!user && "hidden"}`}>
-                <div className="flex gap-5 items-center justify-end">
-                    <div className="w-7 rounded-full">
-                        <img src={user?.photoURL ? user.photoURL : "https://i.ibb.co/F8JsB1D/default-profile-account-unknown-icon-black-silhouette-free-vector.jpg"} className="rounded-full" />
+            {loader ?
+                <div className='flex justify-end items-center px-20'><span className="loading loading-spinner loading-md "></span></div>
+                :
+                <div className={`px-20 py-1 bg-base-300 ${!user && "hidden"}`}>
+                    <div className="flex gap-5 items-center justify-end">
+                        <div className="w-7 rounded-full">
+                            <img src={user?.photoURL ? user.photoURL : "https://i.ibb.co/F8JsB1D/default-profile-account-unknown-icon-black-silhouette-free-vector.jpg"} className="rounded-full" />
+                        </div>
+                        <p className="text-xs">{user?.displayName || user?.email}</p>
+                        <button onClick={handleLogout} className="btn btn-outline btn-sm">LogOut</button>
                     </div>
-                    <p className="text-xs hidden md:block">{user?.email}</p>
-                    <button onClick={handleLogout} className="btn btn-outline btn-sm">LogOut</button>
-                </div>
-            </div>
+                </div>}
         </div>
     );
 };
