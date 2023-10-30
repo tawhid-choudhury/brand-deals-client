@@ -1,9 +1,54 @@
-
+import { useContext, useEffect, useState } from "react";
+import { AuthContext } from "../../providers/AuthProvider";
+import CartItems from "./CartItems";
 
 const Cart = () => {
+    const { user } = useContext(AuthContext)
+    const [emailFiltered, setEmailFiltered] = useState([]);
+
+    const handleEmailFilter = () => {
+        fetch(`http://localhost:5000/carts/${user.email}`)
+            .then(res => res.json())
+            .then(data => {
+                setEmailFiltered(data)
+            })
+    }
+    useEffect(() => {
+        handleEmailFilter();
+    }, []);
+
+    // console.log(emailFiltered);
+
+    const handleDelete = (cartId) => {
+        console.log(cartId);
+    }
+
     return (
-        <div>
-            cartasdasd
+        <div className="py-10 px-5 lg:px-10">
+            <h1 className="text-3xl font-semibold text-center">Your Cart</h1>
+            <div className="overflow-x-auto">
+                <table className="table table-zebra">
+                    {/* head */}
+                    <thead>
+                        <tr>
+                            <th>Image</th>
+                            <th>Name</th>
+                            <th className="hidden lg:block">Brand</th>
+                            <th>price</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        {
+                            emailFiltered.map(item => <CartItems key={item._id} item={item} handleDelete={handleDelete}></CartItems>)
+                        }
+
+                    </tbody>
+                </table>
+            </div>
+
+
         </div>
     );
 };
