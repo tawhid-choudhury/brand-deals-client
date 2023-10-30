@@ -44,7 +44,7 @@ const UpdateProduct = () => {
 
         console.log(updatedProduct);
 
-        fetch(`https://assignment-10-server-jym3wwvau-tawhid-tataris-projects.vercel.app/updateProduct/${product._id}`, {
+        fetch(`https://assignment-10-server-gl0lq2ddg-tawhid-tataris-projects.vercel.app/updateProduct/${product._id}`, {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json'

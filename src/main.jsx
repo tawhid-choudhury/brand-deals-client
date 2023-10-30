@@ -47,17 +47,17 @@ const router = createBrowserRouter([
       {
         path: '/updateProduct/:id',
         element: <PrivateRoute><UpdateProduct></UpdateProduct></PrivateRoute>,
-        loader: ({ params }) => fetch(`https://assignment-10-server-jym3wwvau-tawhid-tataris-projects.vercel.app/productDetail/${params.id}`)
+        loader: ({ params }) => fetch(`https://assignment-10-server-gl0lq2ddg-tawhid-tataris-projects.vercel.app/productDetail/${params.id}`)
       },
       {
         path: '/products/:brand',
         element: <PrivateRoute><BrandPage></BrandPage></PrivateRoute>,
-        loader: ({ params }) => fetch(`https://assignment-10-server-jym3wwvau-tawhid-tataris-projects.vercel.app/products/${params.brand}`)
+        loader: ({ params }) => fetch(`https://assignment-10-server-gl0lq2ddg-tawhid-tataris-projects.vercel.app/products/${params.brand}`)
       },
       {
         path: '/productDetail/:id',
         element: <PrivateRoute><ProductDetail></ProductDetail></PrivateRoute>,
-        loader: ({ params }) => fetch(`https://assignment-10-server-jym3wwvau-tawhid-tataris-projects.vercel.app/productDetail/${params.id}`)
+        loader: ({ params }) => fetch(`https://assignment-10-server-gl0lq2ddg-tawhid-tataris-projects.vercel.app/productDetail/${params.id}`)
       },
     ]
   },
