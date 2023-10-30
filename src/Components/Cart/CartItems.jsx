@@ -21,7 +21,7 @@ const CartItems = ({ item, handleDelete }) => {
 
     return (
         <tr>
-            <td>
+            <td className='hidden sm:table-cell'>
                 <div className="avatar">
                     <div className="w-8 lg:w-24 rounded">
                         <img src={itemDetails.img} />

@@ -43,7 +43,7 @@ const Cart = () => {
                     {/* head */}
                     <thead>
                         <tr>
-                            <th>Image</th>
+                            <th className="hidden sm:block">Image</th>
                             <th>Name</th>
                             <th className="hidden lg:block">Brand</th>
                             <th>price</th>
