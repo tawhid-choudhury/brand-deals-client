@@ -8,7 +8,7 @@ const ErrorPage = () => {
                 Error!!
             </h1>
             <p className='text-center'>Something went Wrong</p>
-            <Link to={'/'}> <p className='text-center mt-10 p-4 rounded-xl'>Go Back to Home</p></Link>
+            <Link to={'/'}> <p className='text-center btn-accent'>Go Back to Home</p></Link>
         </div>
     );
 };
