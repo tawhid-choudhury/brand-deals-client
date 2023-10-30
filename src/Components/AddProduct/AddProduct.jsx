@@ -90,6 +90,7 @@ const AddProduct = () => {
                                 <option value="newBalance">New Balance</option>
                                 <option value="underArmour">Under Armour</option>
                                 <option value="reebok">Reebok</option>
+                                <option value="fila">Fila</option>
                             </select>
                         </div>
 
@@ -138,7 +139,7 @@ const AddProduct = () => {
                     <input type="text" placeholder="Image URL" name="img" className="input input-bordered w-full" />
                 </div>
 
-                <input type="submit" className="btn btn-block  btn-outline my-7 " />
+                <input type="submit" value="Add" className="btn btn-block  btn-accent my-7 " />
 
             </form>
         </div>

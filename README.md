@@ -1,8 +1,14 @@
-# React + Vite
+# FRONTEND LIVE LINK:
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## ABOUT THIS PROJECT
 
-Currently, two official plugins are available:
+- this project uses react routes
+- uses mongoDB as database
+- expressjs as backend
+- uses Vercel to host backend
+- uses firebase to host frontend
+- uses private routes
+- has login and registration using email
+- has google login or signup
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+# BACKEND LINK:

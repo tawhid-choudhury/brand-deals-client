@@ -17,7 +17,7 @@ const BrandPage = () => {
             <div className='flex justify-center'>
                 <div className='flex flex-wrap gap-10 justify-center items-center my-10'>
                     {
-                        products.map(product => <Product key={product._id} product={product}></Product>)
+                        products.length ? products.map(product => <Product key={product._id} product={product}></Product>) : <div className='font-bold text-5xl'>No Product Available</div>
                     }
                 </div>
             </div>

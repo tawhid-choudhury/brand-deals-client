@@ -1,4 +1,4 @@
-import { SiNike, SiAdidas, SiPuma, SiNewbalance, SiUnderarmour, SiReebok } from "react-icons/si";
+import { SiNike, SiAdidas, SiPuma, SiNewbalance, SiUnderarmour, SiReebok, SiFila } from "react-icons/si";
 import { useNavigate } from "react-router-dom";
 const Cards = () => {
     const nav = useNavigate();
@@ -53,6 +53,14 @@ const Cards = () => {
                     <h2 className="card-title">REEBOK</h2>
                 </div>
                 <h1 className="flex justify-center text-9xl py-10"><SiReebok></SiReebok></h1>
+            </div>
+
+            {/* card-7 */}
+            <div onClick={() => handleGoToBrandpage("fila")} className="card col-start-2 bg-base-100 shadow-2xl hover:bg-base-300 hover:cursor-pointer">
+                <div className="card-body items-center  text-center">
+                    <h2 className="card-title">FILA</h2>
+                </div>
+                <h1 className="flex justify-center text-9xl py-10"><SiFila></SiFila></h1>
             </div>
         </div>
     );

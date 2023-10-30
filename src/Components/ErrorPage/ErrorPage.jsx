@@ -1,14 +1,23 @@
 
-import { Link } from 'react-router-dom';
+import { AiFillFrown } from 'react-icons/ai';
+import { Link, useRouteError } from 'react-router-dom';
 
 const ErrorPage = () => {
+    const error = useRouteError();
     return (
         <div className='flex flex-col justify-center items-center'>
-            <h1 className='text-center text-2xl font-bold mt-11'>
+            <p className='text-9xl pt-10'><AiFillFrown></AiFillFrown></p>
+
+            <h1 className='text-center text-2xl font-bold mb-10'>
                 Error!!
             </h1>
-            <p className='text-center'>Something went Wrong</p>
-            <Link to={'/'}> <p className='text-center btn-accent'>Go Back to Home</p></Link>
+            <p className='text-center '>{error.statusText || error.message}</p>
+            {
+                error.status === 404 && <div>
+                    <h3 className='mb-10'>404 Page not found</h3>
+                </div>
+            }
+            <Link to={'/'}> <p className='btn btn-accent'>Go Back to Home</p></Link>
         </div>
     );
 };
