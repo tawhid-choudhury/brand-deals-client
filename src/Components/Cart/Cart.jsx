@@ -1,6 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../providers/AuthProvider";
 import CartItems from "./CartItems";
+import swal from "sweetalert";
 
 const Cart = () => {
     const { user } = useContext(AuthContext)
@@ -21,6 +22,17 @@ const Cart = () => {
 
     const handleDelete = (cartId) => {
         console.log(cartId);
+        fetch(`http://localhost:5000/carts/${cartId}`, {
+            method: 'DELETE'
+        }).then(res => res.json())
+            .then(data => {
+                console.log(data);
+                if (data.deletedCount > 0) {
+                    const remainingItems = emailFiltered.filter(item => item._id !== cartId);
+                    setEmailFiltered(remainingItems);
+                    swal("deleted")
+                }
+            })
     }
 
     return (
