@@ -26,7 +26,7 @@ const ProductDetail = () => {
         const newCart = { email, productId }
         console.log(newCart);
 
-        fetch('https://assignment-10-server-gl0lq2ddg-tawhid-tataris-projects.vercel.app/carts', {
+        fetch('https://assignment-10-api.vercel.app/carts', {
             method: "POST",
             headers: { "content-type": "application/json" },
             body: JSON.stringify(newCart)

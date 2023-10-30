@@ -7,7 +7,7 @@ const CartItems = ({ item, handleDelete }) => {
 
 
     const handleItemFetch = () => {
-        fetch(`https://assignment-10-server-gl0lq2ddg-tawhid-tataris-projects.vercel.app/productDetail/${item.productId}`)
+        fetch(`https://assignment-10-api.vercel.app/productDetail/${item.productId}`)
             .then(res => res.json())
             .then(data => {
                 setItemDetails(data);

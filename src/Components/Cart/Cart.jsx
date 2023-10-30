@@ -8,7 +8,7 @@ const Cart = () => {
     const [emailFiltered, setEmailFiltered] = useState([]);
 
     const handleEmailFilter = () => {
-        fetch(`https://assignment-10-server-gl0lq2ddg-tawhid-tataris-projects.vercel.app/carts/${user.email}`)
+        fetch(`https://assignment-10-api.vercel.app/carts/${user.email}`)
             .then(res => res.json())
             .then(data => {
                 setEmailFiltered(data)
@@ -22,7 +22,7 @@ const Cart = () => {
 
     const handleDelete = (cartId) => {
         console.log(cartId);
-        fetch(`https://assignment-10-server-gl0lq2ddg-tawhid-tataris-projects.vercel.app/carts/${cartId}`, {
+        fetch(`https://assignment-10-api.vercel.app/carts/${cartId}`, {
             method: 'DELETE'
         }).then(res => res.json())
             .then(data => {

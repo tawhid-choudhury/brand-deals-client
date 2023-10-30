@@ -11,4 +11,4 @@
 - has login and registration using email
 - has google login or signup
 
-# BACKEND LINK: https://assignment-10-server-gl0lq2ddg-tawhid-tataris-projects.vercel.app/
+# BACKEND LINK: https://assignment-10-api.vercel.app/
