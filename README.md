@@ -1,4 +1,4 @@
-# FRONTEND LIVE LINK:
+# FRONTEND LIVE LINK: https://branddealsa10.web.app/
 
 ## ABOUT THIS PROJECT
 
@@ -11,4 +11,4 @@
 - has login and registration using email
 - has google login or signup
 
-# BACKEND LINK:
+# BACKEND LINK: https://assignment-10-server-jym3wwvau-tawhid-tataris-projects.vercel.app/
